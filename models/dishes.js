@@ -1,7 +1,8 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
 require('mongoose-currency').loadType(mongoose);
-const Currency = mongoose.Types.Currency;
+var Currency = mongoose.Types.Currency;
 
 var commentSchema = new Schema({
     rating:  {
@@ -22,15 +23,11 @@ var commentSchema = new Schema({
     timestamps: true
 });
 
-const dishSchema = new Schema({
+var dishSchema = new Schema({
     name: {
         type: String,
         required: true,
         unique: true
-    },
-    description: {
-        type: String,
-        required: true
     },
     image: {
         type: String,
@@ -42,17 +39,16 @@ const dishSchema = new Schema({
     },
     label: {
         type: String,
-        default: ''
+        required: true,
+        default: ""
     },
     price: {
         type: Currency,
-        required: true,
-        min: 0
+        required: true
     },
-    featured: {
-        type: Boolean,
-        default:false      
-    },
+    description: {
+        type: String,
+    },   
     comments:[commentSchema]
 }, {
     timestamps: true
